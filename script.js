@@ -43,17 +43,19 @@ $(function(){
 
 	$('button').on('click', function(e){
 		e.preventDefault();
-		window.location.hash = $('input').val().toLowerCase();
+		$('button').removeClass('current');
+		$(this).addClass('current');
+		window.location.hash = $('#selectBox').val().toLowerCase();
 	});
 	$('button.all').on('click', function(e){
-		favorite = $('input').val().toLowerCase();
+		favorite = $('#selectBox').val().toLowerCase();
 		if(favorite){
 			calculateOpponents();
 		}
 	});
 
 	$('button.real').on('click', function(e){
-		favorite = $('input').val().toLowerCase();;
+		favorite = $('#selectBox').val().toLowerCase();
 		if(favorite){
 			calculateRealOpponents();
 		}
