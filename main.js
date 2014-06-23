@@ -4,11 +4,10 @@ var scenario;
 var selectedCountry;
 
 $(function(){
-	var hash = window.location.hash;
-	if(hash){
-		favorite = hash.replace("#","");
-		calculateOpponents();
-	}
+	// var hash = window.location.hash;
+	// if(hash){
+	// 	favorite = hash.replace("#","");
+	// }
 	selectedCountry = $(this).find("option:selected")[0].value;
 	var countryName = $(this).find("option:selected")[0].dataset.name;
 	favorite = countryName;
@@ -44,10 +43,9 @@ $(function(){
 			}
 		}
 	});
-	testen();
 });
 
-function testen(){
+function fillRoundof16(){
 	var test16 = [[],[],[],[],[],[],[],[]];
 	$.each(groups,function(i,j){
 		if(j.group==="A" ){
@@ -202,7 +200,7 @@ function calculateRealOpponents(){
 
 function calculateOpponents(){
 	// var roundOf16 = [[groups[0].teams, groups[1].teams],[groups[2].teams, groups[3].teams],[groups[4].teams, groups[5].teams],[groups[6].teams, groups[7].teams]];
-	var roundOf16 = testen();
+	var roundOf16 = fillRoundof16();
 	var quarterFinals = [[roundOf16[0],roundOf16[2]],[roundOf16[1], roundOf16[3]],[roundOf16[4],roundOf16[6]], [roundOf16[5],roundOf16[7]]];
 	var semiFinals = [[quarterFinals[0],quarterFinals[1]],[quarterFinals[2],quarterFinals[3]]];
 	var possibleOpponents = {
