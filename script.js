@@ -1,3 +1,114 @@
+var countryData = {
+	"brazil" : {
+		"teamName" : "Brazil",
+		"teamCode" : "bra"
+	},
+	"mexico" : {
+		"teamName" : "Mexico",
+		"teamCode" : "mex"
+	},
+	"croatia" : {
+		"teamName" : "Croatia",
+		"teamCode" : "cro"
+	},
+	"holland" : {
+		"teamName" : "Holland",
+		"teamCode" : "ned"
+	},
+	"chile" : {
+		"teamName" : "Chile",
+		"teamCode" : "chi"
+	},
+	"colombia" : {
+		"teamName" : "Colombia",
+		"teamCode" : "col"
+	},
+	"ivorycoast" : {
+		"teamName" : "Ivory Coast",
+		"teamCode" : "civ"
+	},
+	"japan" : {
+		"teamName" : "Japan",
+		"teamCode" : "jpn"
+	},
+	"greece" : {
+		"teamName" : "Greece",
+		"teamCode" : "gre"
+	},
+	"costarica" : {
+		"teamName" : "Costa Rica",
+		"teamCode" : "crc"
+	},
+	"italy" : {
+		"teamName" : "Italy",
+		"teamCode" : "ita"
+	},
+	"uruguay" : {
+		"teamName" : "Uruguay",
+		"teamCode" : "bra"
+	},
+	"france" : {
+		"teamName" : "France",
+		"teamCode" : "fra"
+	},
+	"ecuador" : {
+		"teamName" : "Ecuador",
+		"teamCode" : "ecu"
+	},
+	"switzerland" : {
+		"teamName" : "Switzerland",
+		"teamCode" : "sui"
+	},
+	"honduras" : {
+		"teamName" : "Honduras",
+		"teamCode" : "hon"
+	},
+	"argentina" : {
+		"teamName" : "Argentina",
+		"teamCode" : "arg"
+	},
+	"nigeria" : {
+		"teamName" : "Nigeria",
+		"teamCode" : "nga"
+	},
+	"iran" : {
+		"teamName" : "Iran",
+		"teamCode" : "irn"
+	},
+	"germany" : {
+		"teamName" : "Germany",
+		"teamCode" : "ger"
+	},
+	"usa" : {
+		"teamName" : "USA",
+		"teamCode" : "usa"
+	},
+	"ghana" : {
+		"teamName" : "Ghana",
+		"teamCode" : "gha"
+	},
+	"portugal" : {
+		"teamName" : "Portugal",
+		"teamCode" : "por"
+	},
+	"belgium" : {
+		"teamName" : "Belgium",
+		"teamCode" : "por"
+	},
+	"southkorea" : {
+		"teamName" : "South Korea",
+		"teamCode" : "kor"
+	},
+	"algeria" : {
+		"teamName" : "Algeria",
+		"teamCode" : "alg"
+	},
+	"russia" : {
+		"teamName" : "Russia",
+		"teamCode" : "rus"
+	}
+}
+
 var groups = [
 	{
 		"group": "A",
@@ -29,10 +140,12 @@ var groups = [
 	},
 	{
 		"group": "H",
-		"teams": ["belgium","southkorea","algeria","russia" ]
+		"teams": ["belgium","algeria","russia","southkorea" ]
 	}
 ];
 var favorite = "";
+var scenario;
+var selectedCountry;
 
 $(function(){
 	var hash = window.location.hash;
@@ -40,28 +153,44 @@ $(function(){
 		favorite = hash.replace("#","");
 		calculateOpponents();
 	}
-
-	$('button').on('click', function(e){
-		e.preventDefault();
-		$('button').removeClass('current');
-		$(this).addClass('current');
-		window.location.hash = $('#selectBox').val().toLowerCase();
-	});
-	$('button.all').on('click', function(e){
-		favorite = $('#selectBox').val().toLowerCase();
-		if(favorite){
+	selectedCountry = $(this).find("option:selected")[0].value;
+	var countryName = $(this).find("option:selected")[0].dataset.name;
+	favorite = countryName;
+	scenario = $('input.scenario:checked')[0].value;
+	if(favorite){
+		if(scenario === "allOpponents"){
 			calculateOpponents();
+		}else if(scenario === "currentStandings"){
+			calculateRealOpponents();
+		}
+	}
+
+	$("#selectBox").change(function(){
+		selectedCountry = $(this).find("option:selected")[0].value;
+		favorite = $(this).find("option:selected")[0].dataset.name;
+		scenario = $('input.scenario:checked')[0].value;
+		if(favorite){
+			if(scenario === "allOpponents"){
+				calculateOpponents();
+			}else if(scenario === "currentStandings"){
+				calculateRealOpponents();
+			}
 		}
 	});
 
-	$('button.real').on('click', function(e){
-		favorite = $('#selectBox').val().toLowerCase();
+	$("input.scenario").change(function(){
+		scenario = $('input.scenario:checked')[0].value;
 		if(favorite){
-			calculateRealOpponents();
+			if(scenario === "allOpponents"){
+				calculateOpponents();
+			}else if(scenario === "currentStandings"){
+				calculateRealOpponents();
+			}
 		}
 	});
 	
 });
+
 
 function calculateRealOpponents(){
 	var roundOf16 = [
@@ -177,8 +306,8 @@ function calculateOpponents(){
 }
 
 function showResults(data){ 
-	$('.container').html('<h2>Possible opponents for ' + favorite + '</h2>');
-	var rounds = ["round of 16", "quarter finals", "semi finals", "final"]
+	$('.container').html('<h2>Possible opponents for ' + selectedCountry + '</h2>');
+	var rounds = ["Round of 16", "Quarter finals", "Semi finals", "Final"]
 	var n = 0;
 	for(var key in data){
 		if(data[key]){
@@ -186,9 +315,10 @@ function showResults(data){
 			var roundData = flattenArray(data[key]);
 			var title = $('<h3>').html(rounds[n])
 			$content.append(title);
-			var list = $content.append('<ul>');
+			var list = $('<ul>');
+			$content.append(list);
 			$.each(roundData,function(i,j){
-				var listItem = $('<li>').html(j);
+				var listItem = $('<li>').html("<img src='images/" + countryData[j].teamCode + ".png' /> " + countryData[j].teamName);
 				list.append(listItem);
 			});
 
