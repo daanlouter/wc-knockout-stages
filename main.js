@@ -1,13 +1,15 @@
 var countryData = {"brazil" : {"teamName" : "Brazil", "teamCode" : "bra"}, "mexico" : {"teamName" : "Mexico", "teamCode" : "mex"}, "croatia" : {"teamName" : "Croatia", "teamCode" : "cro"}, "holland" : {"teamName" : "Holland", "teamCode" : "ned"}, "chile" : {"teamName" : "Chile", "teamCode" : "chi"}, "colombia" : {"teamName" : "Colombia", "teamCode" : "col"}, "ivorycoast" : {"teamName" : "Ivory Coast", "teamCode" : "civ"}, "japan" : {"teamName" : "Japan", "teamCode" : "jpn"}, "greece" : {"teamName" : "Greece", "teamCode" : "gre"}, "costarica" : {"teamName" : "Costa Rica", "teamCode" : "crc"}, "italy" : {"teamName" : "Italy", "teamCode" : "ita"}, "uruguay" : {"teamName" : "Uruguay", "teamCode" : "uru"}, "france" : {"teamName" : "France", "teamCode" : "fra"}, "ecuador" : {"teamName" : "Ecuador", "teamCode" : "ecu"}, "switzerland" : {"teamName" : "Switzerland", "teamCode" : "sui"}, "honduras" : {"teamName" : "Honduras", "teamCode" : "hon"}, "argentina" : {"teamName" : "Argentina", "teamCode" : "arg"}, "nigeria" : {"teamName" : "Nigeria", "teamCode" : "nga"}, "iran" : {"teamName" : "Iran", "teamCode" : "irn"}, "germany" : {"teamName" : "Germany", "teamCode" : "ger"}, "usa" : {"teamName" : "USA", "teamCode" : "usa"}, "ghana" : {"teamName" : "Ghana", "teamCode" : "gha"}, "portugal" : {"teamName" : "Portugal", "teamCode" : "por"}, "belgium" : {"teamName" : "Belgium", "teamCode" : "bel"}, "southkorea" : {"teamName" : "South Korea", "teamCode" : "kor"}, "algeria" : {"teamName" : "Algeria", "teamCode" : "alg"}, "russia" : {"teamName" : "Russia", "teamCode" : "rus"} }
-var groups = [{"group": "A", "teams": ["brazil","mexico"], "finished" : true }, {"group": "B", "teams": ["holland","chile"], "finished" : true }, {"group": "C", "teams": ["colombia","ivorycoast","japan","greece"], "finished" : false }, {"group": "D", "teams": ["costarica","italy", "uruguay"], "finished" : false }, {"group": "E", "teams": ["france","ecuador","switzerland","honduras"], "finished" : false }, {"group": "F", "teams": ["argentina","nigeria","iran"], "finished" : false }, {"group": "G", "teams": ["germany","usa", "ghana", "portugal"], "finished" : false }, {"group": "H", "teams": ["belgium","algeria","russia","southkorea" ], "finished" : false } ]; var favorite = "";
+var groups = [{"group": "A", "teams": ["brazil","mexico"], "finished" : true }, {"group": "B", "teams": ["holland","chile"], "finished" : true }, {"group": "C", "teams": ["colombia","ivorycoast","japan","greece"], "finished" : false }, {"group": "D", "teams": ["costarica","italy", "uruguay"], "finished" : false }, {"group": "E", "teams": ["france","ecuador","switzerland","honduras"], "finished" : false }, {"group": "F", "teams": ["argentina","nigeria","iran"], "finished" : false }, {"group": "G", "teams": ["germany","usa", "ghana", "portugal"], "finished" : false }, {"group": "H", "teams": ["belgium","algeria","russia","southkorea" ], "finished" : false } ]; 
+var favorite = "";
 var scenario;
 var selectedCountry;
 
 $(function(){
-	// var hash = window.location.hash;
-	// if(hash){
-	// 	favorite = hash.replace("#","");
-	// }
+	var hash = window.location.hash;
+	if(hash){
+		favorite = hash.replace("#","");
+		$('#selectBox').find("[data-name='" + favorite + "']").prop('selected', true);
+	}
 	selectedCountry = $(this).find("option:selected")[0].value;
 	var countryName = $(this).find("option:selected")[0].dataset.name;
 	favorite = countryName;
