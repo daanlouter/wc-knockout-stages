@@ -1,0 +1,66 @@
+<html>
+
+<head>
+<title>Who could your country face in the knockout stages</title>
+<!-- <link type="text/css" href="pasteup-dev-fonts.css" rel="stylesheet" media="screen" /> -->
+<link type="text/css" href="http://assets.guim.co.uk/stylesheets/webfonts.d35b9e8c33865a46b3231a20c9f960b0.css" rel="stylesheet" media="screen" />
+
+
+<link type="text/css" href="styles.css" rel="stylesheet" media="screen" />
+<meta name="viewport" content="initial-scale=1">
+<script src="jquery-1.10.1.min.js"></script>
+<script src="main.js"></script>
+</head>
+
+<body>
+<div id="wrapper nextgenfront">
+	<div class="selectForm">
+		<h2>Select a team:</h2>
+		<form>
+			<select id ="selectBox">
+				<option  data-name="brazil" selected>Brazil</option>
+				<option data-name="mexico">Mexico</option>
+				<!-- <option data-name="croatia" disabled>Croatia</option> -->
+				<option data-name="holland">Holland</option>
+				<option data-name="chile">Chile</option>
+				<option data-name="colombia">Colombia</option>
+				<option data-name="ivorycoast">Ivory Coast</option>
+				<option data-name="japan">Japan</option>
+				<option data-name="greece">Greece</option>
+				<option data-name="costarica">Costa Rica</option>
+				<option data-name="uruguay">Uruguay</option>
+				<!-- <option data-name="italy">Italy</option> -->
+				<option data-name="france">France</option>
+				<option data-name="ecuador">Ecuador</option>
+				<option data-name="honduras">Honduras</option>
+				<option data-name="switzerland">Switzerland</option>
+				<option data-name="argentina">Argentina</option>
+				<option data-name="nigeria">Nigeria</option>
+				<option data-name="iran">Iran</option>
+				<option data-name="germany">Germany</option>
+				<option data-name="usa">USA</option>
+				<option data-name="ghana">Ghana</option>
+				<option data-name="portugal">Portugal</option>
+				<option data-name="belgium">Belgium</option>
+				<option data-name="russia">Russia</option>
+				<option data-name="southkorea">South Korea</option>
+				<option data-name="algeria">Algeria</option>
+			</select>
+
+			<input type="radio" name="opponent" class="scenario" value="allOpponents" checked>All possible opponents
+			<input type="radio" name="opponent" class="scenario" value="currentStandings">Based on current standings
+		</form>
+	</div>
+	
+	<div class="container">
+		<h3></h3>
+		<!-- <div class="filter"><button type="submit" class="all current">Search for all possible opponents</button><button type="button" class="real">Based on current standings</button></div> -->
+	</div>
+	</div>
+
+<script src="//interactive.guim.co.uk/libs/iframe-messenger/iframeMessenger.js"></script>
+<script>
+    iframeMessenger.enableAutoResize();
+</script>
+</body>
+</html>
