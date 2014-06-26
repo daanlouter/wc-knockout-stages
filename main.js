@@ -280,7 +280,7 @@ function showResults(data){
 			var list = $('<ul>');
 			$content.append(list);
 			$.each(roundData,function(i,j){
-				var listItem = $('<li>').html("<img src='images/" + countryData[j].teamCode + ".png' /> " + countryData[j].teamName);
+				var listItem = $('<li>').html("<img src='images/" + countryData[j].teamCode + ".png' /><span>" + countryData[j].teamName + "</span>");
 				list.append(listItem);
 			});
 
