@@ -7,7 +7,7 @@ var groups = [
 	{"group": "E", "teams": ["france","switzerland"], "finished" : true }, 
 	{"group": "F", "teams": ["argentina","nigeria"], "finished" : true }, 
 	{"group": "G", "teams": ["germany","usa"], "finished" : true}, 
-	{"group": "H", "teams": ["belgium","algeria","russia","southkorea" ], "finished" : false } ]; 
+	{"group": "H", "teams": ["belgium","algeria" ], "finished" : true } ]; 
 var favorite = "";
 var scenario;
 var selectedCountry;
@@ -21,38 +21,29 @@ $(function(){
 	selectedCountry = $(this).find("option:selected")[0].value;
 	var countryName = $(this).find("option:selected")[0].dataset.name;
 	favorite = countryName;
-	scenario = $('input.scenario:checked')[0].value;
+	
 	if(favorite){
-		if(scenario === "allOpponents"){
-			calculateOpponents();
-		}else if(scenario === "currentStandings"){
 			calculateRealOpponents();
-		}
 	}
 
 	$("#selectBox").change(function(){
 		selectedCountry = $(this).find("option:selected")[0].value;
 		favorite = $(this).find("option:selected")[0].dataset.name;
-		scenario = $('input.scenario:checked')[0].value;
 		if(favorite){
-			if(scenario === "allOpponents"){
-				calculateOpponents();
-			}else if(scenario === "currentStandings"){
 				calculateRealOpponents();
-			}
 		}
 	});
 
-	$("input.scenario").change(function(){
-		scenario = $('input.scenario:checked')[0].value;
-		if(favorite){
-			if(scenario === "allOpponents"){
-				calculateOpponents();
-			}else if(scenario === "currentStandings"){
-				calculateRealOpponents();
-			}
-		}
-	});
+	// $("input.scenario").change(function(){
+	// 	scenario = $('input.scenario:checked')[0].value;
+	// 	if(favorite){
+	// 		if(scenario === "allOpponents"){
+	// 			calculateOpponents();
+	// 		}else if(scenario === "currentStandings"){
+	// 			calculateRealOpponents();
+	// 		}
+	// 	}
+	// });
 });
 
 function fillRoundof16(){
