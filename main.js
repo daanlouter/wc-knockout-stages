@@ -278,7 +278,7 @@ function calculateOpponents(){
 
 function showResults(data){ 
 	$('.container').html('<h2>Possible opponents for ' + selectedCountry + '</h2>');
-	var rounds = ["Round of 16", "Quarter-finals", "Semi-finals", "Final"]
+	var rounds = ["Quarter-finals", "Semi-finals", "Final"]
 	var n = 0;
 	for(var key in data){
 		if(data[key].length > 0){
