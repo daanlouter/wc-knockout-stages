@@ -127,7 +127,7 @@ function fillRoundof16(){
 
 
 function calculateRealOpponents(){
-	var roundOf16 = [
+	var oldroundOf16 = [
 		[groups[0].teams[0], groups[1].teams[1]],
 		[groups[0].teams[1], groups[1].teams[0]],
 		[groups[2].teams[0], groups[3].teams[1]],
@@ -136,6 +136,16 @@ function calculateRealOpponents(){
 		[groups[4].teams[1], groups[5].teams[0]],
 		[groups[6].teams[0], groups[7].teams[1]],
 		[groups[6].teams[1], groups[7].teams[0]]
+	];
+	var roundOf16 = [
+		[groups[0].teams[0]],
+		[groups[1].teams[0]],
+		[groups[2].teams[0]],
+		[groups[3].teams[0]],
+		[groups[4].teams[0]],
+		[groups[5].teams[0]],
+		[groups[6].teams[0]],
+		[groups[7].teams[0]]
 	];
 	var quarterFinals = [
 		[roundOf16[0],roundOf16[2]],
@@ -271,7 +281,7 @@ function showResults(data){
 	var rounds = ["Round of 16", "Quarter-finals", "Semi-finals", "Final"]
 	var n = 0;
 	for(var key in data){
-		if(data[key]){
+		if(data[key].length > 0){
 			var $content = $('<div class="round"></div>');
 			var roundData = flattenArray(data[key]);
 			var title = $('<h3>').html(rounds[n])
