@@ -148,10 +148,10 @@ function calculateRealOpponents(){
 		[groups[7].teams[0]]
 	];
 	var quarterFinals = [
-		[roundOf16[0],roundOf16[2]],
-		[roundOf16[1],roundOf16[3]],
-		[roundOf16[4],roundOf16[6]],
-		[roundOf16[5],roundOf16[7]]
+		[roundOf16[0]],
+		[roundOf16[1]],
+		[roundOf16[6]],
+		[roundOf16[5]]
 	];
 	var semiFinals = [
 		[quarterFinals[0],quarterFinals[2]],
@@ -278,7 +278,7 @@ function calculateOpponents(){
 
 function showResults(data){ 
 	$('.container').html('<h2>Possible opponents for ' + selectedCountry + '</h2>');
-	var rounds = ["Quarter-finals", "Semi-finals", "Final"]
+	var rounds = ["Semi-finals", "Final"]
 	var n = 0;
 	for(var key in data){
 		if(data[key].length > 0){
