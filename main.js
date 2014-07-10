@@ -154,8 +154,8 @@ function calculateRealOpponents(){
 		[roundOf16[5]]
 	];
 	var semiFinals = [
-		[quarterFinals[0],quarterFinals[2]],
-		[quarterFinals[1],quarterFinals[3]]
+		[quarterFinals[2]],
+		[quarterFinals[3]]
 	]
 	
 	var possibleOpponents = {
@@ -163,6 +163,7 @@ function calculateRealOpponents(){
 		roundTwo : "",
 		roundThree : "",
 		roundFour: "",
+		roundFive: "",
 	};
 	$.each(roundOf16,function(i,j){
 		if($.inArray(favorite,j) !== -1){
@@ -278,25 +279,68 @@ function calculateOpponents(){
 
 function showResults(data){ 
 	$('.container').html('<h2>Possible opponents for ' + selectedCountry + '</h2>');
-	var rounds = ["Semi-finals", "Final"]
+	var rounds = ["Final"]
 	var n = 0;
-	for(var key in data){
-		if(data[key].length > 0){
+	// for(var key in data){
+	// 	if(data[key].length > 0){
+	// 		var $content = $('<div class="round"></div>');
+	// 		var roundData = flattenArray(data[key]);
+	// 		var title = $('<h3>').html(rounds[n])
+	// 		$content.append(title);
+	// 		var list = $('<ul>');
+	// 		$content.append(list);
+	// 		$.each(roundData,function(i,j){
+	// 			var listItem = $('<li>').html("<img src='images/" + countryData[j].teamCode + ".png' /><span>" + countryData[j].teamName + "</span>");
+	// 			list.append(listItem);
+	// 		});
+
+	// 		$('.container').append($content);
+	// 		n++;
+	// 	}
+	// 	console.log(data.roundFour)
+	// }
+
+	//LAST ROUND HACK
+
+	if(data.roundFour.length > 0){
+		var $content = $('<div class="round"></div>');
+		var roundData = flattenArray(data.roundFour);
+		var title = $('<h3>').html(rounds[n])
+		$content.append(title);
+		var list = $('<ul>');
+		$content.append(list);
+		$.each(roundData,function(i,j){
+			var listItem = $('<li>').html("<img src='images/" + countryData[j].teamCode + ".png' /><span>" + countryData[j].teamName + "</span>");
+			list.append(listItem);
+		});
+
+		$('.container').append($content);
+		n++;
+	}else{
+		if(selectedCountry === "Holland"){
 			var $content = $('<div class="round"></div>');
-			var roundData = flattenArray(data[key]);
-			var title = $('<h3>').html(rounds[n])
+			var roundData = "Brazil";
+			var title = $('<h3>').html("Third-place play-off");
 			$content.append(title);
 			var list = $('<ul>');
 			$content.append(list);
-			$.each(roundData,function(i,j){
-				var listItem = $('<li>').html("<img src='images/" + countryData[j].teamCode + ".png' /><span>" + countryData[j].teamName + "</span>");
-				list.append(listItem);
-			});
-
+			var listItem = $('<li>').html("<img src='images/bra.png' /><span>Brazil</span>");
+			list.append(listItem);
 			$('.container').append($content);
-			n++;
+		}else if(selectedCountry === "Brazil"){
+			var $content = $('<div class="round"></div>');
+			var roundData = "Holland";
+			var title = $('<h3>').html("Third-place play-off");
+			$content.append(title);
+			var list = $('<ul>');
+			$content.append(list);
+			var listItem = $('<li>').html("<img src='images/ned.png' /><span>Holland</span>");
+			list.append(listItem);
+			$('.container').append($content);
 		}
 	}
+
+
 	
 }
 
